@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="shortcut icon" type="image/png" href="/icon.png" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css" integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14=" crossorigin="" />
+    <script defer src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js" integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg=" crossorigin=""></script>
+    <script defer src="script.js"></script>
+    <title>mapty // Map your workouts</title>
+  </head>
+  <body>
+    <main>
+      <div class="sideBar">
+        <div class="logoCont">  
+          <img src="/logo.png" alt="">
+        </div>
+        <div class="workoutsContainer">
+          
+          <div class="workoutInfoCont hidden">
+            
+            <form class="workoutInfoAdd">
+              
+              <div class="inputDiv">
+                <h3>Type</h3>
+                <select id="TypeInput">
+                  <option value="running">Running</option>
+                  <option value="cycling">Cycling</option>
+                </select>
+              </div>
+                
+              <div class="inputDiv">
+                <h3>Distance</h3>
+                <input type="text" id="DistanceInput">
+              </div>
+                
+              <div class="inputDiv">
+                <h3>Duration</h3>
+                <input type="text" id="DurationInput">
+              </div>
+                
+              <div class="inputDiv">
+                <h3 id="cadenceOrElev">Cadence</h3>
+                <input type="text" id="CadenceOrElevationInput">
+              </div>
+              <input type="submit" name="" class="hiddenk">
+            </form>
+          </div>
+        </div>
+      </div>
+      <div id="interactiveMap">
+
+      </div>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,202 @@
+:root {
+  --color-brand--1: #ffb545;
+  --color-brand--2: #00c46a;
+
+  --color-dark--1: #2d3439;
+  --color-dark--2: #42484d;
+  --color-light--1: #aaa;
+  --color-light--2: #ececec;
+  --color-light--3: rgb(214, 222, 224);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Manrope', sans-serif;
+  color: var(--color-light--2);
+  overflow: hidden;
+}
+
+/* GENERAL */
+
+main {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  width: calc(100vw - 5rem);
+  height: calc(100vh - 5rem);
+  margin-left: 2.5rem;
+  margin-top: 2.5rem;
+  margin-left: 2.5rem;
+  margin-top: 2.5rem;
+  background-color: #2d3439;
+}
+.logoCont {
+  display: flex;
+  justify-content: center;
+  margin-top: 2.5rem;
+  height: 7rem;
+  margin-bottom: 5rem;
+}
+.logoCont img {
+  height: 100%;
+  width: auto;
+  
+}
+
+/* SIDEBAR */
+
+.sideBar {
+  grid-column: 1 / span 2;
+}
+.workoutsContainer {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin: auto;
+  max-height: 50rem;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+.workoutsContainer::-webkit-scrollbar {
+  width: 0;
+}
+.workoutInfoCont {
+  display: flex;
+  margin-bottom: 3rem;
+  min-width: 42rem;
+  max-width: 62rem;
+  transition: all 0.5s, transform 1ms;
+}
+.workoutInfo {
+  width: 100%;
+  background-color: #42484d;
+  padding: 0.8rem;
+  border-top-right-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+}
+.workoutInfo  h1{
+}
+.workoutDecorRunning {
+  width: 0.4rem;
+  background-color: #00c46a;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+.workoutDecorCycling {
+  width: 0.4rem;
+  background-color: #ffb545;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+.popupCycle {
+  border-left: 5px solid #ffb545;
+}
+.popupRun {
+  border-left: 5px solid #00c46a;
+}
+.workoutInfoAdd {
+  padding: 1.2rem;
+  width: 100%;
+  background-color: #42484d;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  row-gap: 1rem;
+}
+
+.exerciseDetails {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+.exerciseDetails span {
+  font-size: 1.75rem;
+}
+
+.hiddenk {
+  display: none;
+}
+.workoutInfoCont.hidden {
+  opacity: 0;
+  height: 0;
+  transform: translateY(-30rem);
+}
+.inputDiv {
+  margin-left: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  grid-column: span 1;
+}
+.inputDiv h3 {
+  font-size: 1.5rem;
+  margin-right: 1.5rem;
+}
+.inputDiv input {
+  border: none;
+  width: 10rem;
+  border-radius: 2px;
+  background-color: #e8e8e8;
+}
+.inputDiv select {
+  border: none;
+  width: 10rem;
+  border-radius: 2px;
+  background-color: #e8e8e8;
+}
+.inputDiv select:hover {
+  border: none;
+  border-radius: 2px;
+  background-color: rgb(255, 255, 255);
+}
+.inputDiv input:focus {
+  outline: none;
+  background-color: rgb(255, 255, 255);
+}
+.inputDiv input:hover {
+  outline: none;
+  background-color: rgb(255, 255, 255);
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.execBr {
+  display: inline-block;
+  font-weight: bold;
+  font-size: 1rem !important;
+  color: #aaa;
+}
+
+/* MAP */
+
+#interactiveMap {
+  grid-column: 3 / span 6;
+  background-color: #aaa;
+}
+.leaflet-popup .leaflet-popup-content-wrapper {
+  background-color: var(--color-dark--1);
+  color: var(--color-light--2);
+  border-radius: 5px;
+  border-left: 5px solid magenta;
+  padding-right: 0.6rem;
+}
+.leaflet-popup .leaflet-popup-content {
+  font-size: 1.5rem;
+}
+.leaflet-popup .leaflet-popup-tip {
+  background-color: var(--color-dark--1);
+}
+
