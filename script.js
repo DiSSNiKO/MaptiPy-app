@@ -91,6 +91,7 @@ class App {
         form.addEventListener('submit', this._newWorkout.bind(this));
         typeInput.addEventListener('change', this._placeholders.bind(this));
         workoutsContainer.addEventListener('click', this._centerOnWorkout.bind(this));
+        this._getLocalStorage();
     }
     _getPosition(){
         if(navigator.geolocation){
@@ -111,6 +112,18 @@ class App {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(this.#map);
         this.#map.on('click', this._showForm.bind(this));
+        
+
+        //Horrible solution, absolutely asinine (fix l8r heres hoping), BUT WORKS :ddd
+        this._workouts.forEach((wok)=>{ 
+            let jujuonthatbeat = null;
+            if(wok.type==='cycling'){
+                jujuonthatbeat = new Cycling(wok.coords, wok.distance, wok.duration, wok.elevation, wok.type); 
+            } else {
+                jujuonthatbeat = new Running(wok.coords, wok.distance, wok.duration, wok.cadence, wok.type);
+            }
+            this._renderMarker(jujuonthatbeat);
+        });
     }
     _showForm(mapE){
         formCont.classList.remove("hidden");
@@ -236,7 +249,25 @@ class App {
         }
     }
     _setLocalStorage(){
-        localStorage.setItem('workouts', this._workouts);
+        localStorage.setItem('workouts', JSON.stringify(this._workouts));
+    }
+    _getLocalStorage(){
+        const data = JSON.parse(localStorage.getItem('workouts'));
+        console.log(data);
+        if(!data){
+            return;
+        }
+        this._workouts = data;
+        let jujuonthatbeat;
+        data.forEach(wok => {
+            jujuonthatbeat = null;
+            if(wok.type==='cycling'){
+                jujuonthatbeat = new Cycling(wok.coords, wok.distance, wok.duration, wok.elevation, wok.type); 
+            } else {
+                jujuonthatbeat = new Running(wok.coords, wok.distance, wok.duration, wok.cadence, wok.type);
+            }
+            jujuonthatbeat._renderWorkout();
+        });
     }
 }
 
