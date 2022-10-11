@@ -57,7 +57,7 @@ main {
 .sideBar {
   grid-column: 1 / span 2;
 }
-.workoutsContainer {
+.workoutsAndFormContainer {
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -66,7 +66,7 @@ main {
   overflow-y: scroll;
   overflow-x: hidden;
 }
-.workoutsContainer::-webkit-scrollbar {
+.workoutsAndFormContainer::-webkit-scrollbar {
   width: 0;
 }
 .workoutInfoCont {
@@ -83,7 +83,8 @@ main {
   border-top-right-radius: 0.5rem;
   border-bottom-right-radius: 0.5rem;
 }
-.workoutInfo  h1{
+.workoutInfo:hover{
+  cursor: pointer;
 }
 .workoutDecorRunning {
   width: 0.4rem;

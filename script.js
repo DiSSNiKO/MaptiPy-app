@@ -1,6 +1,5 @@
 'use strict';
 
-
 //FORM
 const formCont = document.querySelector(".workoutInfoCont");
 const form = document.querySelector(".workoutInfoAdd");
@@ -86,11 +85,12 @@ class Cycling extends Workout {
 class App {
     #map
     #mapEvent //private properties
-    workouts = [];
+    _workouts = [];
     constructor() {
         this._getPosition(); //fires upon creation of the object, so based
         form.addEventListener('submit', this._newWorkout.bind(this));
         typeInput.addEventListener('change', this._placeholders.bind(this));
+        workoutsContainer.addEventListener('click', this._centerOnWorkout.bind(this));
     }
     _getPosition(){
         if(navigator.geolocation){
@@ -128,10 +128,36 @@ class App {
         }
         return newarr;
     }
+    _removeStartingZeroes(str){
+        let restr = '';
+        let zeroesOver = false;
+        let isNegative=false;
+        if(str[0]==='-'){
+            isNegative=true;
+            str = str.slice(1);
+        }
+        for (let char of str){
+            if(char!='0'){
+                zeroesOver=true;
+            }
+            if(zeroesOver){
+                restr+=char;
+            }
+        }
+        if(isNegative){
+            return "-"+restr;
+        } else {
+            return restr;
+        }
+    }
     _formDataCheck(){
         let invalidInputs = false;
         let workingValues = [distanceInput.value, durationInput.value, cadenceSlashElevation.value];
+        workingValues = workingValues.map(val => this._removeStartingZeroes(val));
         if(typeInput.value==='cycling'){
+            if(!Number.isFinite(Number(workingValues[2]))){
+                invalidInputs = true;
+            }
             workingValues = this._indexRemove(workingValues, 2);
         }
         workingValues.forEach((elem)=>{
@@ -143,26 +169,25 @@ class App {
     }
     _newWorkout(e){
         e.preventDefault();
-        const workingValues = [distanceInput.value, durationInput.value, cadenceSlashElevation.value, typeInput.value];
+        let workingValues = [distanceInput.value, durationInput.value, cadenceSlashElevation.value, typeInput.value];
+        workingValues = workingValues.map(val => this._removeStartingZeroes(val));
         if(!this._formDataCheck()){
             if(workingValues[3].toLowerCase()==='cycling'){
                 const biker = new Cycling([this.#mapEvent.latlng.lat, this.#mapEvent.latlng.lng], workingValues[0], workingValues[1], workingValues[2], workingValues[3]);
                 biker._renderWorkout();
-                this.workouts.push(biker);
-                this._renderMarker(biker);
+                this._workouts.push(biker);
+                this._renderMarker(biker); 
             } else {
                 const runboyrun = new Running([this.#mapEvent.latlng.lat, this.#mapEvent.latlng.lng], workingValues[0], workingValues[1], workingValues[2], workingValues[3]);
                 runboyrun._renderWorkout();
-                this.workouts.push(runboyrun);
+                this._workouts.push(runboyrun);
                 this._renderMarker(runboyrun);
             } 
         } else {
             alert("Input proper values.");
         }
-        formCont.classList.add('hidden');
-        distanceInput.value = '';
-        durationInput.value = '';
-        cadenceSlashElevation.value = '';
+        this._clearForm();
+        this._setLocalStorage();   
     }
     _placeholders(){
         if(typeInput.value.toLowerCase()=='running'){
@@ -177,6 +202,12 @@ class App {
             cadenceOrElev.textContent = 'Elev Gain'
         }
     }
+    _clearForm(){
+        formCont.classList.add('hidden');
+        distanceInput.value = '';
+        durationInput.value = '';
+        cadenceSlashElevation.value = '';
+    }
     _renderMarker(workout){
         L.marker(workout.coords).addTo(this.#map)
         .bindPopup(
@@ -190,6 +221,22 @@ class App {
         )
         .setPopupContent(`${workout.type.charAt(0).toUpperCase()+workout.type.slice(1)} on ${workout.months[workout.date.getMonth()]} ${workout.date.getDate()}`)
         .openPopup();
+    }
+    _centerOnWorkout(e){
+        const curWorkout = e.target.closest('.workoutInfo');
+        let indks = 0;
+        if (curWorkout != null){
+            for(let workout of this._workouts){
+                if(workout.id===curWorkout.dataset.id){
+                    break;
+                }
+                indks+=1;
+            }
+        this.#map.setView(this._workouts[indks].coords, 12);
+        }
+    }
+    _setLocalStorage(){
+        localStorage.setItem('workouts', this._workouts);
     }
 }
 
