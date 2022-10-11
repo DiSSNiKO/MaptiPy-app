@@ -17,7 +17,7 @@ durationInput.placeholder = 'min';
 cadenceSlashElevation.placeholder = 'step/min';
 
 //STORAGE?
-
+const logoo = document.querySelector('.logoCont');
 
 class Workout {
     months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
@@ -238,13 +238,16 @@ class App {
     _centerOnWorkout(e){
         const curWorkout = e.target.closest('.workoutInfo');
         let indks = 0;
-        if (curWorkout != null){
+        if (curWorkout){
             for(let workout of this._workouts){
-                if(workout.id===curWorkout.dataset.id){
+                console.log(workout, 'owo')
+                console.log(workout.id, curWorkout.dataset.id)
+                if(workout.id===curWorkout.dataset.id){ 
                     break;
                 }
                 indks+=1;
             }
+        console.log(indks)
         this.#map.setView(this._workouts[indks].coords, 12);
         }
     }
@@ -262,9 +265,11 @@ class App {
         data.forEach(wok => {
             jujuonthatbeat = null;
             if(wok.type==='cycling'){
-                jujuonthatbeat = new Cycling(wok.coords, wok.distance, wok.duration, wok.elevation, wok.type); 
+                jujuonthatbeat = new Cycling(wok.coords, wok.distance, wok.duration, wok.elevation, wok.type);
+                jujuonthatbeat.id = wok.id; 
             } else {
                 jujuonthatbeat = new Running(wok.coords, wok.distance, wok.duration, wok.cadence, wok.type);
+                jujuonthatbeat.id = wok.id;
             }
             jujuonthatbeat._renderWorkout();
         });
@@ -275,6 +280,9 @@ class App {
 const app = new App();
 
 
-//LOG WORKOUT
+//Temporary
+logoo.addEventListener('click', function(){
+    localStorage.clear();
+});
 
 
