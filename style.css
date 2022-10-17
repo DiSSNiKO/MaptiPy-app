@@ -39,6 +39,7 @@ main {
   margin-top: 2.5rem;
   background-color: #2d3439;
 }
+
 .logoCont {
   display: flex;
   justify-content: center;
@@ -46,17 +47,19 @@ main {
   height: 7rem;
   margin-bottom: 5rem;
 }
+
 .logoCont img {
   height: 100%;
   width: auto;
-  
+
 }
 
 /* SIDEBAR */
 
 .sideBar {
-  grid-column: 1 / span 2;
+  grid-column: span 2;
 }
+
 .workoutsAndFormContainer {
   display: flex;
   align-items: center;
@@ -66,16 +69,19 @@ main {
   overflow-y: scroll;
   overflow-x: hidden;
 }
+
 .workoutsAndFormContainer::-webkit-scrollbar {
   width: 0;
 }
+
 .workoutInfoCont {
   display: flex;
   margin-bottom: 3rem;
-  min-width: 42rem;
   max-width: 62rem;
+  min-width: 42rem;
   transition: all 0.5s, transform 1ms;
 }
+
 .workoutInfo {
   width: 100%;
   background-color: #42484d;
@@ -83,27 +89,33 @@ main {
   border-top-right-radius: 0.5rem;
   border-bottom-right-radius: 0.5rem;
 }
-.workoutInfo:hover{
+
+.workoutInfo:hover {
   cursor: pointer;
 }
+
 .workoutDecorRunning {
   width: 0.4rem;
   background-color: #00c46a;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
 }
+
 .workoutDecorCycling {
   width: 0.4rem;
   background-color: #ffb545;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
 }
+
 .popupCycle {
   border-left: 5px solid #ffb545;
 }
+
 .popupRun {
   border-left: 5px solid #00c46a;
 }
+
 .workoutInfoAdd {
   padding: 1.2rem;
   width: 100%;
@@ -122,6 +134,7 @@ main {
   justify-content: space-between;
   margin-top: 1rem;
 }
+
 .exerciseDetails span {
   font-size: 1.75rem;
 }
@@ -129,51 +142,61 @@ main {
 .hiddenk {
   display: none;
 }
+
 .workoutInfoCont.hidden {
   opacity: 0;
   height: 0;
   transform: translateY(-30rem);
 }
+
 .inputDiv {
   margin-left: 1.5rem;
   display: flex;
   justify-content: space-between;
   grid-column: span 1;
 }
+
 .inputDiv h3 {
   font-size: 1.5rem;
   margin-right: 1.5rem;
 }
+
 .inputDiv input {
   border: none;
   width: 10rem;
   border-radius: 2px;
   background-color: #e8e8e8;
 }
+
 .inputDiv select {
   border: none;
   width: 10rem;
   border-radius: 2px;
   background-color: #e8e8e8;
 }
+
 .inputDiv select:hover {
   border: none;
   border-radius: 2px;
   background-color: rgb(255, 255, 255);
 }
+
 .inputDiv input:focus {
   outline: none;
   background-color: rgb(255, 255, 255);
 }
+
 .inputDiv input:hover {
   outline: none;
   background-color: rgb(255, 255, 255);
 }
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+
 .execBr {
   display: inline-block;
   font-weight: bold;
@@ -187,6 +210,7 @@ input::-webkit-inner-spin-button {
   grid-column: 3 / span 6;
   background-color: #aaa;
 }
+
 .leaflet-popup .leaflet-popup-content-wrapper {
   background-color: var(--color-dark--1);
   color: var(--color-light--2);
@@ -194,10 +218,101 @@ input::-webkit-inner-spin-button {
   border-left: 5px solid magenta;
   padding-right: 0.6rem;
 }
+
 .leaflet-popup .leaflet-popup-content {
   font-size: 1.5rem;
 }
+
 .leaflet-popup .leaflet-popup-tip {
   background-color: var(--color-dark--1);
 }
 
+@media screen and (max-width: 1366px) {
+  main {
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-areas: "side side side map map map map";
+  }
+
+  .workoutsAndFormContainer {
+    max-height: 45rem;
+  }
+
+  .logoCont {
+    margin-bottom: 2rem;
+  }
+
+  #interactiveMap {
+    grid-area: map;
+  }
+
+  .sideBar {
+    grid-area: side;
+  }
+}
+
+@media screen and (max-width: 1040px) {
+  .workoutInfoAdd {
+    grid-template-columns: 1fr;
+    width: 70%;
+  }
+
+  .workoutInfo {
+    width: 70%;
+  }
+
+  .workoutInfoCont {
+    justify-content: center;
+  }
+
+  .inputDiv h3 {
+    font-size: 1.5rem;
+  }
+
+  #TypeInput {
+    font-size: 1.5rem;
+    width: 40%;
+  }
+
+  .inputDiv input {
+    font-size: 1.5rem;
+    width: 40%;
+  }
+
+  .exerciseDetails span {
+    font-size: 1.15rem;
+  }
+
+  .execBr {
+    font-size: 1.15rem;
+  }
+}
+
+/* @media screen and (max-width: 750px) {
+  /* .logoCont {
+    height: 5rem;
+  }
+
+  .inputDiv {
+    flex-direction: column;
+  }
+
+  .workoutInfoAdd {
+    width: auto;
+  }
+
+  .inputDiv {
+    width: 50%;
+  }
+
+  .inputDiv input {
+    width: 70%;
+  }
+
+  #TypeInput {
+    width: 70%;
+  }
+
+  .owoform {
+    width: 60%;
+  }
+} */
