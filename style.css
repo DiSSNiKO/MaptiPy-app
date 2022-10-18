@@ -65,7 +65,7 @@ main {
   align-items: center;
   flex-direction: column;
   margin: auto;
-  max-height: 50rem;
+  max-height: 52rem;
   overflow-y: scroll;
   overflow-x: hidden;
 }
@@ -253,11 +253,6 @@ input::-webkit-inner-spin-button {
 @media screen and (max-width: 1040px) {
   .workoutInfoAdd {
     grid-template-columns: 1fr;
-    width: 70%;
-  }
-
-  .workoutInfo {
-    width: 70%;
   }
 
   .workoutInfoCont {
@@ -270,12 +265,10 @@ input::-webkit-inner-spin-button {
 
   #TypeInput {
     font-size: 1.5rem;
-    width: 40%;
   }
 
   .inputDiv input {
     font-size: 1.5rem;
-    width: 40%;
   }
 
   .exerciseDetails span {
@@ -285,34 +278,57 @@ input::-webkit-inner-spin-button {
   .execBr {
     font-size: 1.15rem;
   }
+  .workoutInfoCont {
+    min-width: 32rem;
+  }
 }
 
-/* @media screen and (max-width: 750px) {
-  /* .logoCont {
+@media screen and (max-width: 805px) {
+  .logoCont {
     height: 5rem;
   }
-
+  .workoutInfoCont {
+    min-width: 28rem;
+  }
+}
+@media screen and (max-width: 715px) {
+  .workoutInfoCont {
+    min-width: 23rem;
+  }
+  .exerciseDetails {
+    flex-direction: column;
+  }
+  .workoutInfo h1 {
+    font-size: 1.8rem;
+  }
+  .exerciseDetails span {
+    font-size: 2rem;
+    text-align: center;
+  }
+}
+@media screen and (max-width: 600px) {
+  .workoutInfoCont {
+    min-width: 15rem;
+  }
   .inputDiv {
     flex-direction: column;
   }
-
-  .workoutInfoAdd {
-    width: auto;
+  .workoutInfo h1 {
+    font-size: 1.1rem;
   }
-
-  .inputDiv {
-    width: 50%;
+}
+@media screen and (max-height: 600px){
+  .workoutsAndFormContainer {
+    max-height: 35rem;
   }
-
-  .inputDiv input {
-    width: 70%;
+}
+@media screen and (max-height: 500px){
+  .workoutsAndFormContainer {
+    max-height: 25rem;
   }
-
-  #TypeInput {
-    width: 70%;
+}
+@media screen and (max-height: 377px){
+  .workoutsAndFormContainer {
+    max-height: 17rem;
   }
-
-  .owoform {
-    width: 60%;
-  }
-} */
+}
